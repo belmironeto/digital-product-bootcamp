@@ -1,0 +1,4 @@
+formatter: "md doc"
+
+settings:
+  color: true
