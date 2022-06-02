@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "jboss-state"
+    bucket = "gab-teste"
     key    = "infra-terraform.tfstate"
     region = "us-east-1"
   }

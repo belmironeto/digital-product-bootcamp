@@ -13,6 +13,36 @@ module "vpc" {
   one_nat_gateway_per_az = false
 }
 
-output "jboss_vpc_id" {
-  value = module.vpc.vpc_id
+module "jenkins_sg" {
+  source = "terraform-aws-modules/security-group/aws"
+
+  name        = "Jenkins-SG"
+  description = "Security group para nossa instancia do Jenkins Server"
+  vpc_id      = module.vpc.vpc_id
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_rules       = ["http-80-tcp", "ssh-tcp", "http-8080-tcp"]
+  egress_rules        = ["all-all"]
 }
+
+module "jboss_sg" {
+  source = "terraform-aws-modules/security-group/aws"
+
+  name        = "JBOSS-SG"
+  description = "Security group para nossa instancia do JBOSS"
+  vpc_id      = module.vpc.vpc_id
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_rules       = ["http-80-tcp", "ssh-tcp", "http-8080-tcp"]
+  ingress_with_cidr_blocks  = [
+    {
+      from_port   = 9990
+      to_port     = 9990
+      protocol    = "tcp"
+      description = "http-9990-tcp"
+      cidr_blocks = "0.0.0.0/0"
+    }
+  ]
+  egress_rules        = ["all-all"]
+
+}
+
+
