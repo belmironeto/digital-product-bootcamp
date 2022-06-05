@@ -11,6 +11,7 @@ module "vpc" {
   enable_nat_gateway = true
   single_nat_gateway = false
   one_nat_gateway_per_az = false
+  default_vpc_enable_dns_hostnames = true
 }
 
 module "jenkins_sg" {
@@ -46,3 +47,16 @@ module "jboss_sg" {
 }
 
 
+module "alb" {
+  source  = "terraform-aws-modules/alb/aws"
+  version = "~> 6.0"
+
+  name = "jboss-alb"
+
+  load_balancer_type = "application"
+
+  vpc_id             = module.vpc.vpc_id
+  subnets            = module.vpc.private_subnets
+  security_groups    = [module.jboss_sg.security_group_id]
+
+}
