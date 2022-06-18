@@ -21,6 +21,12 @@
     regexp: '# JBOSS_USER=jboss-eap'
     line: 'JBOSS_USER=jboss-eap'
 
+- name: Configurando JBOSS para rodar em modo Domain
+  lineinfile:
+    dest: /etc/default/jboss-eap.conf
+    regexp: '# JBOSS_MODE=standalone'
+    line: 'JBOSS_MODE=domain'
+
 - name: Reiniciando o Daemon
   raw: 'systemctl daemon-reload'
 
