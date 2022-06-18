@@ -10,3 +10,4 @@ jboss_admin_pass=P@ssw0rd!
 jboss_home=/opt/jboss-eap
 SECRET_DOMAIN=UEBzc3cwcmQh
 DOMAIN_CONTROLLER=10.0.1.11
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
