@@ -18,8 +18,8 @@
 - name: Setando usuario para start do JBOSS
   lineinfile:
     dest: /etc/default/jboss-eap.conf
-    regexp: '^#(.* JBOSS_USER=jboss-eap.*)'
-    replace: '\1'
+    regexp: '# JBOSS_USER=jboss-eap'
+    line: 'JBOSS_USER=jboss-eap'
 
 - name: Reiniciando o Daemon
   raw: 'systemctl daemon-reload'
