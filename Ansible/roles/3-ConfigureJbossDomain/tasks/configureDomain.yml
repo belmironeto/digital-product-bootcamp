@@ -2,14 +2,14 @@
   copy:
     src: domain.xml
     dest: '{{ jboss_home }}/domain/configuration/domain.xml'
-    owner: jboss
+    owner: jboss-eap
     group: jbossro
 
 - name: Editar arquivo host.xml
   template:
     src: host.xml.j2
     dest: '{{ jboss_home }}/domain/configuration/host.xml'
-    owner: jboss
+    owner: jboss-eap
     group: jbossro
 
 - name: Iniciar Domain
