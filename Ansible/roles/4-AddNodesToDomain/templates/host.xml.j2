@@ -82,6 +82,11 @@
     <jvms>
     </jvms>
     <servers>
+        <server name="server-three" group="main-server-group" auto-start="false">
+            <jvm name="default"/>
+            <socket-bindings port-offset="150"/>
+        </server>
+        <server name="server-two" group="other-server-group" auto-start="false"/>
     </servers>
     <profile>
         <subsystem xmlns="urn:jboss:domain:core-management:1.0"/>
