@@ -3,3 +3,10 @@
 
 [worker]
 10.0.1.12
+
+[all:vars]
+jboss_admin_user=manager
+jboss_admin_pass=P@ssw0rd!
+jboss_home=/opt/jboss-eap
+SECRET_DOMAIN=UEBzc3cwcmQh
+DOMAIN_CONTROLLER=10.0.1.11
