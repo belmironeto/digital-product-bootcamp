@@ -1,8 +1,11 @@
 #!/bin/bash
 sudo yum update -y
-sudo yum install yum-utils -y
+sudo yum install yum-utils git -y
+sudo amazon-linux-extras install ansible2
+ansible-galaxy collection install amazon.aws
 
 sudo yum install docker -y
+
 sudo chmod 666 /var/run/docker.sock
 sudo usermod -aG docker ec2-user 
 
