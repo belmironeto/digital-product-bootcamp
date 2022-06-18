@@ -27,6 +27,19 @@
     regexp: '# JBOSS_MODE=standalone'
     line: 'JBOSS_MODE=domain'
 
+- name: Configurando arquivo DOMAIN
+  lineinfile:
+    dest: /etc/default/jboss-eap.conf
+    regexp: '# JBOSS_DOMAIN_CONFIG=domain.xml'
+    line: 'JBOSS_DOMAIN_CONFIG=domain.xml'
+
+- name: Configurando arquivo HOSTS
+  lineinfile:
+    dest: /etc/default/jboss-eap.conf
+    regexp: '# JBOSS_HOST_CONFIG=host.xml'
+    line: 'JBOSS_HOST_CONFIG=host.xml'
+
+
 - name: Reiniciando o Daemon
   raw: 'systemctl daemon-reload'
 
