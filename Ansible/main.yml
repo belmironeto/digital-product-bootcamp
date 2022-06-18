@@ -1,7 +1,20 @@
+- hosts: localhost
+  user: ec2-user
+  gather_facts: yes
+  roles:
+    - { role: 0-DownloadPackages, tags: downloadPackages }
+
 - hosts: all
   become: yes
-  user: root
+  user: ec2-user
   gather_facts: yes
   roles:
     - { role: 1-InstallPreReqs, tags: installPreReqs }
     - { role: 2-InstallJboss, tags: installJboss }
+
+- hosts: domain
+  become: yes
+  user: ec2-user
+  gather_facts: yes
+  roles:
+    - { role: 3-ConfigureJbossDomain, tags: configureDomain }

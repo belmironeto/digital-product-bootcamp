@@ -1,0 +1,15 @@
+- name: Install Python pre-reqs
+  pip:
+    name:
+      - boto3
+      - botocore
+    executable: pip-3
+
+- name: Download do Pacote JBOSS
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  amazon.aws.aws_s3:
+    bucket: gab-teste
+    object:  jboss-eap-7.2.0.zip
+    dest: /tmp/jboss-eap-7.2.0.zip
+    mode: get

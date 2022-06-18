@@ -1,2 +1,3 @@
 ---
 # tasks file for 2-InstallJboss
+- include: installJboss.yml

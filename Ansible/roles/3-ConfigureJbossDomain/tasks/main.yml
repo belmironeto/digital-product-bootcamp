@@ -1,2 +1,3 @@
 ---
 # tasks file for 3-ConfigureJbossDomain
+- include: configureDomain.yml
