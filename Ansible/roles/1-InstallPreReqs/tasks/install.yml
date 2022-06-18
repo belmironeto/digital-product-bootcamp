@@ -27,5 +27,7 @@
   file:
     src: /opt/jboss-eap-7.2
     dest: /opt/jboss-eap
+    owner: jboss-eap
+    group: jbossro
     state: link
 
