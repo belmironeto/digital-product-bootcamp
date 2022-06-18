@@ -15,6 +15,12 @@
     mode: 0755
     remote_src: yes
 
+- name: Setando usuario para start do JBOSS
+  lineinfile:
+    dest: /etc/default/jboss-eap.conf
+    regexp: '^#(.* JBOSS_USER=jboss-eap.*)'
+    replace: '\1'
+
 - name: Reiniciando o Daemon
   raw: 'systemctl daemon-reload'
 
