@@ -18,3 +18,10 @@
   gather_facts: yes
   roles:
     - { role: 3-ConfigureJbossDomain, tags: configureDomain }
+
+- hosts: worker
+  become: yes
+  user: ec2-user
+  gather_facts: yes
+  roles:
+    - { role: 4-AddNodesToDomain, tags: createCluster }
