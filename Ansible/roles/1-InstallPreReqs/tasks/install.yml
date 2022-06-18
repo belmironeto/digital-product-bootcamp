@@ -23,6 +23,9 @@
     owner: jboss-eap
     group: jbossro
 
-- name: Renomear diretorio
-  command: mv /opt/jboss-eap-7.2 /opt/jboss-eap
+- name: Criar link simbolico para diretorio
+  file:
+    src: /opt/jboss-eap-7.2
+    dest: /opt/jboss-eap
+    state: link
 
