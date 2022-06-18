@@ -78,9 +78,7 @@ module "jboss_instances_azA" {
   vpc_security_group_ids = [data.aws_security_group.jboss_sg.id]
   subnet_id              = data.aws_subnet.jboss_private_sub_1a.id
 
-  provisioner "local-exec" {
-      command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user --private-key ./labsuser.pem -i ../Ansible/inventory main.yml"
-  }
+
 }
 
 /* module "jboss_instances_azB" {
