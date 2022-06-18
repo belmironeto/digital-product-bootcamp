@@ -1,0 +1,11 @@
+- name: Adicionando o servidor no Cluster
+  template:
+    src: host.xml.j2
+    dest: '{{ jboss_home }}/domain/configuration/host.xml'
+    owner: jboss
+    group: jbossro
+
+- name: Inicializando o JBOSS
+  service:
+    name: jboss7
+    state: started

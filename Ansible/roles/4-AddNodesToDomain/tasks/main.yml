@@ -1,2 +1,3 @@
 ---
 # tasks file for 4-AddNodesToDomain
+- include: configureDomain.yml
