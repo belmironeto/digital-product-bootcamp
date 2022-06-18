@@ -2,7 +2,7 @@
   template:
     src: host.xml.j2
     dest: '{{ jboss_home }}/domain/configuration/host.xml'
-    owner: jboss
+    owner: jboss-eap
     group: jbossro
 
 - name: Inicializando o JBOSS
