@@ -1,0 +1,7 @@
+- hosts: all
+  become: yes
+  user: root
+  gather_facts: yes
+  roles:
+    - { role: 1-InstallPreReqs, tags: installPreReqs }
+    - { role: 2-InstallJboss, tags: installJboss }

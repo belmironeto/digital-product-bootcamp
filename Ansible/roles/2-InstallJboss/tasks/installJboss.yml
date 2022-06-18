@@ -1,0 +1,24 @@
+- name: Copiando arquivo jboss-eap.conf
+  copy:
+    src: /opt/jboss-eap/bin/init.d/jboss-eap.conf
+    dest: /etc/default/jboss-eap.conf
+    owner: root
+    group: root
+    remote_src: yes
+
+- name: Copiando arquivo jboss-eap-rhel
+  copy:
+    src: /opt/jboss-eap/bin/init.d/jboss-eap-rhel.sh
+    dest: /etc/init.d/jboss7
+    owner: root
+    group: root
+    mode: 0755
+    remote_src: yes
+
+- name: Reiniciando o Daemon
+  raw: 'systemctl daemon-reload'
+
+- name: Colocando o servico para iniciar automatico
+  service:
+    name: jboss7
+    enabled: yes

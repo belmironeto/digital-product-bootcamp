@@ -1,0 +1,3 @@
+---
+# tasks file for 1-InstallPreReqs
+- include: install.yml

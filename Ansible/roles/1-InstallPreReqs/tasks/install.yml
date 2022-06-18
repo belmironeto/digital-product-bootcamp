@@ -1,0 +1,43 @@
+- name: Instalar Unzip
+  yum:
+    name:
+      - unzip
+      - java-1.8.0-openjdk
+    state: present
+
+- name: Criar grupo JBOSSRO no Servidor
+  group:
+    name: jbossro
+    state: present
+
+- name: Criando usuario JBOSS no Servidor
+  user:
+    name: jboss
+    group: jbossro
+    state: present
+
+- name: Download do Pacote JBOSS
+  amazon.aws.aws_s3:
+    bucket: gab-teste
+    object:  jboss-eap-7.2.0.zip
+    dest: /tmp/jboss-eap-7.2.0.zip
+    mode: get
+
+- name: Copiando pastas do JBOSS
+  unarchive:
+    src: /tmp/jboss-eap-7.2.0.zip
+    dest: /opt/
+    owner: jboss
+    group: jbossro
+    remote_src: yes
+
+- name: Renomear diretorio
+  copy:
+    remote_src: true
+    src: /opt/jboss-eap-7.2
+    dest: /opt/jboss-eap
+
+-name: Remover diretorio antigo
+ file:
+   path: /opt/jboss-eap-7.2
+   state: absent
