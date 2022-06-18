@@ -16,28 +16,13 @@
     group: jbossro
     state: present
 
-- name: Download do Pacote JBOSS
-  amazon.aws.aws_s3:
-    bucket: gab-teste
-    object:  jboss-eap-7.2.0.zip
-    dest: /tmp/jboss-eap-7.2.0.zip
-    mode: get
-
 - name: Copiando pastas do JBOSS
   unarchive:
     src: /tmp/jboss-eap-7.2.0.zip
     dest: /opt/
     owner: jboss
     group: jbossro
-    remote_src: yes
 
 - name: Renomear diretorio
-  copy:
-    remote_src: true
-    src: /opt/jboss-eap-7.2
-    dest: /opt/jboss-eap
+  command: mv /opt/jboss-eap-7.2 /opt/jboss-eap
 
--name: Remover diretorio antigo
- file:
-   path: /opt/jboss-eap-7.2
-   state: absent

@@ -1,0 +1,21 @@
+- name: Editar arquivo domain.xml
+  copy:
+    src: domain.xml
+    dest: '{{ jboss_home }}/domain/configuration/domain.xml'
+    owner: jboss
+    group: jbossro
+
+- name: Editar arquivo host.xml
+  template:
+    src: host.xml.j2
+    dest: '{{ jboss_home }}/domain/configuration/host.xml'
+    owner: jboss
+    group: jbossro
+
+- name: Iniciar Domain
+  service:
+    name: jboss7
+    state: started
+
+- name: Criando Usuario para Console
+  shell: "{{ jboss_home }}/bin/add-user.sh -u '{{ jboss_admin_user }}' -p '{{ jboss_admin_pass }}' -g 'admin'"

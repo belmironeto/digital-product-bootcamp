@@ -1,2 +1,6 @@
 ---
 # vars file for 3-ConfigureJbossDomain
+jboss_admin_user: manager
+jboss_admin_pass: P@ssw0rd!
+jboss_home: /opt/middleware/jboss-eap
+SECRET_DOMAIN: UEBzc3cwcmQh
