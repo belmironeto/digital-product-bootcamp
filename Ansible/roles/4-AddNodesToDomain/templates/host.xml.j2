@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<host xmlns="urn:jboss:domain:8.0" name="{{ ansible_nodename }}">
+<host xmlns="urn:jboss:domain:8.0" name="{{ ansible_default_ipv4.address }}">
     <extensions>
         <extension module="org.jboss.as.jmx"/>
         <extension module="org.wildfly.extension.core-management"/>

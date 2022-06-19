@@ -14,14 +14,14 @@ module "vpc" {
   default_vpc_enable_dns_hostnames = true
 }
 
-module "jenkins_sg" {
+module "bastion_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
-  name        = "Jenkins-SG"
-  description = "Security group para nossa instancia do Jenkins Server"
+  name        = "Bastion-SG"
+  description = "Security group para nossa instancia de Bastion"
   vpc_id      = module.vpc.vpc_id
   ingress_cidr_blocks = ["0.0.0.0/0"]
-  ingress_rules       = ["http-80-tcp", "ssh-tcp", "http-8080-tcp"]
+  ingress_rules       = ["ssh-tcp"]
   egress_rules        = ["all-all"]
 }
 
@@ -50,20 +50,4 @@ module "jboss_sg" {
     }
   ]
   egress_rules        = ["all-all"]
-
-}
-
-
-module "alb" {
-  source  = "terraform-aws-modules/alb/aws"
-  version = "~> 6.0"
-
-  name = "jboss-alb"
-
-  load_balancer_type = "application"
-
-  vpc_id             = module.vpc.vpc_id
-  subnets            = module.vpc.private_subnets
-  security_groups    = [module.jboss_sg.security_group_id]
-
 }
