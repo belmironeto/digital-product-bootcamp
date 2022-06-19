@@ -39,7 +39,7 @@ data "aws_subnet" "jboss_private_sub_1b" {
 #  name = "iam_profile_ec2_jboss"
 #}
 
-module "jenkins_ec2" {
+module "bastion_ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 3.0"
   name = "Bastion-Server"
@@ -47,18 +47,18 @@ module "jenkins_ec2" {
   instance_type          = "t2.micro"
   key_name               = "vockey"
   monitoring             = true
-  vpc_security_group_ids = [ data.aws_security_group.jenkins_sg.id ]
+  vpc_security_group_ids = [ data.aws_security_group.bastion_sg.id ]
   subnet_id              = data.aws_subnet.jboss_public_sub_1a.id
   iam_instance_profile   = "LabInstanceProfile"
   user_data              = file("./modules/compute/bastion.sh")
 }
 
-resource "aws_eip" "jenkins-ip" {
-  instance = module.jenkins_ec2.id
+resource "aws_eip" "bastion-ip" {
+  instance = module.bastion_ec2.id
   vpc = true
 
   tags = {
-    Name = "Jenkins-Server-EIP"
+    Name = "Bastion-Server-EIP"
   }
 }
 
