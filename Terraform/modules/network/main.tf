@@ -40,6 +40,13 @@ module "jboss_sg" {
       protocol    = "tcp"
       description = "http-9990-tcp"
       cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 9999
+      to_port     = 9999
+      protocol    = "tcp"
+      description = "http-9999-tcp"
+      cidr_blocks = "0.0.0.0/0"
     }
   ]
   egress_rules        = ["all-all"]

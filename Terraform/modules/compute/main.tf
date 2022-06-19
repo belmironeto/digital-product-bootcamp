@@ -80,24 +80,3 @@ module "jboss_instances_azA" {
 
 
 }
-
-/* module "jboss_instances_azB" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "~> 3.0"
-
-  for_each = {
-    JBOSS03: "10.0.2.13"
-    JBOSS04: "10.0.2.14"
-    }
-  name                   = "${each.key}"
-  private_ip             = "${each.value}"
-
-  ami                    = "ami-03ededff12e34e59e"
-  instance_type          = "t2.micro"
-  key_name               = "vockey"
-  monitoring             = true
-  vpc_security_group_ids = [data.aws_security_group.jboss_sg.id]
-  subnet_id              = data.aws_subnet.jboss_private_sub_1b.id
-  
- 
-}  */
