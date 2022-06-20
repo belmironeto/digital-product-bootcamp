@@ -21,7 +21,7 @@ module "bastion_sg" {
   description = "Security group para nossa instancia de Bastion"
   vpc_id      = module.vpc.vpc_id
   ingress_cidr_blocks = ["0.0.0.0/0"]
-  ingress_rules       = ["ssh-tcp"]
+  ingress_rules       = ["ssh-tcp", "http-80-tcp"]
   egress_rules        = ["all-all"]
 }
 
@@ -32,7 +32,7 @@ module "jboss_sg" {
   description = "Security group para nossa instancia do JBOSS"
   vpc_id      = module.vpc.vpc_id
   ingress_cidr_blocks = ["0.0.0.0/0"]
-  ingress_rules       = ["http-80-tcp", "ssh-tcp", "http-8080-tcp"]
+  ingress_rules       = ["ssh-tcp", "http-8080-tcp"]
   ingress_with_cidr_blocks  = [
     {
       from_port   = 9990
@@ -50,4 +50,7 @@ module "jboss_sg" {
     }
   ]
   egress_rules        = ["all-all"]
+
 }
+
+
